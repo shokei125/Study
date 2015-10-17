@@ -12,6 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,50 +34,58 @@ public class MainActivity extends ActionBarActivity {
         studyLst.add("ContentProvider");
         studyLst.add("Sqlite3");
 
+        StudySampleAdappter adapter = new StudySampleAdappter(this);
+        adapter.addList(studyLst);
         //Viewに渡す
-        ListAdapter adapter = new ArrayAdapter<String>
-                (this,android.R.layout.simple_list_item_1,studyLst);
+//        ListAdapter adapter = new ArrayAdapter<String>
+//                (this, android.R.layout.simple_list_item_1, studyLst);
 
         //set
         mListStudy.setAdapter(adapter);
 
     }
 
-    public class StudySampleAdappter extends BaseAdapter{
+    public class StudySampleAdappter extends BaseAdapter {
 
         private LayoutInflater _layoutInflater;
         private Context _context;
-        private  List<String> _list;
+        private List<String> _list;
 
         /**
          * コンストラクタ
+         *
          * @param context
          */
-        public StudySampleAdappter(Context context){
+        public StudySampleAdappter(Context context) {
             _context = context;
             _list = new ArrayList();
+            _layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
 
         /**
          * リストデータの追加(単)
+         *
          * @param data
          */
-        public void add(String data){
+        public void add(String data) {
             _list.add(data);
+            notifyDataSetChanged();
         }
 
         /**
          * リストデータの追加(リスト一式)
+         *
          * @param dataList
          */
-        public void addList(List<String> dataList){
-            for(String data : dataList){
-                _list.add(data);
+        public void addList(List<String> dataList) {
+            for (String data : dataList) {
+                add(data);
             }
         }
 
         /**
          * リストの個数
+         *
          * @return
          */
         @Override
@@ -85,6 +95,7 @@ public class MainActivity extends ActionBarActivity {
 
         /**
          * 指定位置のアイテムを返す
+         *
          * @param position
          * @return
          */
@@ -94,7 +105,6 @@ public class MainActivity extends ActionBarActivity {
         }
 
         /**
-         *
          * @param position
          * @return
          */
@@ -105,6 +115,7 @@ public class MainActivity extends ActionBarActivity {
 
         /**
          * 画面の表示情報を返す
+         *
          * @param position
          * @param convertView
          * @param parent
@@ -112,8 +123,26 @@ public class MainActivity extends ActionBarActivity {
          */
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
+            Holder holder = null;
+           //インスタンスの取得
+            if(convertView == null) {
+                convertView = _layoutInflater.inflate(R.layout.study_list_item, null);
+                holder = new Holder();
+                holder.txtTitle = (TextView) convertView.findViewById(R.id.txt_title);
+                convertView.setTag(holder);
+            }else{
+                holder = (Holder) convertView.getTag();
+            }
+            //データの取得
+            String title = (String) getItem(position);
 
-            return null;
+            //データの設定
+            holder.txtTitle.setText(title);
+            return convertView;
+        }
+
+        private class Holder{
+            TextView txtTitle;
         }
     }
 
