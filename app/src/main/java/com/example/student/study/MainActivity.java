@@ -1,15 +1,17 @@
 package com.example.student.study;
 
+import android.content.Context;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-
-import org.apache.commons.lang3.StringUtils;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,11 +33,88 @@ public class MainActivity extends ActionBarActivity {
         studyLst.add("Sqlite3");
 
         //Viewに渡す
-        ListAdapter adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,studyLst);
+        ListAdapter adapter = new ArrayAdapter<String>
+                (this,android.R.layout.simple_list_item_1,studyLst);
 
         //set
         mListStudy.setAdapter(adapter);
 
+    }
+
+    public class StudySampleAdappter extends BaseAdapter{
+
+        private LayoutInflater _layoutInflater;
+        private Context _context;
+        private  List<String> _list;
+
+        /**
+         * コンストラクタ
+         * @param context
+         */
+        public StudySampleAdappter(Context context){
+            _context = context;
+            _list = new ArrayList();
+        }
+
+        /**
+         * リストデータの追加(単)
+         * @param data
+         */
+        public void add(String data){
+            _list.add(data);
+        }
+
+        /**
+         * リストデータの追加(リスト一式)
+         * @param dataList
+         */
+        public void addList(List<String> dataList){
+            for(String data : dataList){
+                _list.add(data);
+            }
+        }
+
+        /**
+         * リストの個数
+         * @return
+         */
+        @Override
+        public int getCount() {
+            return _list.size();
+        }
+
+        /**
+         * 指定位置のアイテムを返す
+         * @param position
+         * @return
+         */
+        @Override
+        public Object getItem(int position) {
+            return _list.get(position);
+        }
+
+        /**
+         *
+         * @param position
+         * @return
+         */
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        /**
+         * 画面の表示情報を返す
+         * @param position
+         * @param convertView
+         * @param parent
+         * @return
+         */
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+
+            return null;
+        }
     }
 
     @Override
