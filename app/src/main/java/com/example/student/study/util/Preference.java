@@ -16,8 +16,7 @@ public class Preference {
 //        return loadPreference(context,PREF_KEY_LOGIN_PASSWORD, "");
 //    }
 
-    public static String loadPreference(Context context,
-                                        String key,String defValue){
+    public static String loadPreference(Context context, String key, String defValue) {
         SharedPreferences preference =
                 context.getSharedPreferences("pref",
                         Context.MODE_PRIVATE);
@@ -25,23 +24,23 @@ public class Preference {
     }
 
     public static boolean savePreference
-            (Context context,String key,Object value){
+            (Context context, String key, Object value) {
         SharedPreferences preference =
                 context.getSharedPreferences("pref",
                         Context.MODE_PRIVATE);
         SharedPreferences.Editor editor =
                 preference.edit();
 
-        if(value instanceof String)
-            editor.putString(key, (String)value);
-        else if(value instanceof Integer)
-            editor.putInt(key, (Integer)value);
-        else if(value instanceof Boolean)
-            editor.putBoolean(key, (Boolean)value);
-        else if(value instanceof Long)
-            editor.putLong(key, (Long)value);
-        else if(value instanceof Float)
-            editor.putFloat(key, (Float)value);
+        if (value instanceof String)
+            editor.putString(key, (String) value);
+        else if (value instanceof Integer)
+            editor.putInt(key, (Integer) value);
+        else if (value instanceof Boolean)
+            editor.putBoolean(key, (Boolean) value);
+        else if (value instanceof Long)
+            editor.putLong(key, (Long) value);
+        else if (value instanceof Float)
+            editor.putFloat(key, (Float) value);
 
         return editor.commit();
     }
