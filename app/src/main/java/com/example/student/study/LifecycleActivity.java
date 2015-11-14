@@ -19,42 +19,37 @@ public class LifecycleActivity extends BaseActivity {
     }
 
     @Override
-    protected void onStart() {
+    protected void onStart (){
         super.onStart();
         Toast.makeText(this, "onStart実行",
                 Toast.LENGTH_LONG).show();
     }
-
     @Override
-    protected void onRestart() {
+    protected void onRestart (){
         super.onRestart();
         Toast.makeText(this, "onRestart実行",
                 Toast.LENGTH_LONG).show();
     }
-
     @Override
-    protected void onResume() {
+    protected void onResume (){
         super.onResume();
         Toast.makeText(this, "onResume実行",
                 Toast.LENGTH_LONG).show();
     }
-
     @Override
-    protected void onPause() {
+    protected void onPause (){
         super.onPause();
         Toast.makeText(this, "onPause実行",
                 Toast.LENGTH_LONG).show();
     }
-
     @Override
-    protected void onStop() {
+    protected void onStop(){
         super.onStop();
         Toast.makeText(this, "onStop実行",
                 Toast.LENGTH_LONG).show();
     }
-
     @Override
-    protected void onDestroy() {
+    protected void onDestroy(){
         super.onDestroy();
         Toast.makeText(this, "ondestroy実行",
                 Toast.LENGTH_LONG).show();
