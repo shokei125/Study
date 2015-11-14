@@ -29,7 +29,7 @@ public class AsyncActivity extends ActionBarActivity {
          * AsyncTaskサンプル　※こちらをAndroidでは採用
          */
 
-        // HelloAsyncTaskのインスタンス生成
+    // HelloAsyncTaskのインスタンス生成
         HelloAsyncTask task = new HelloAsyncTask();
         // Async処理実行（非同期処理→メイン処理）
         task.execute("Hello World !!!!");
