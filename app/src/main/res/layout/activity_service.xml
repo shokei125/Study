@@ -12,7 +12,7 @@
         android:id="@+id/edit_stop_count"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_alignleft="@+id/txt_miniute" />
+        android:layout_alignLeft="@+id/txt_miniute" />
 
 
     <TextView

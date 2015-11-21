@@ -14,7 +14,8 @@ public class ServiceActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_service);
+        setContentView(R.layout.activity_service
+        );
 
         mEditStopCount = (EditText) findViewById(R.id.edit_stop_count);
         findViewById(R.id.btn_start).setOnClickListener(new View.OnClickListener() {
