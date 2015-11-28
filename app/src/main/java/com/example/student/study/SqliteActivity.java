@@ -22,51 +22,57 @@ public class SqliteActivity extends ActionBarActivity {
 
         mCreateProductHelper = new CreateProductHelper(this);
 
-        //インスタンス生成 ※書き込み用(insert/update/delete)
+        // インスタンス生成 ※書き込み用(insert / update / delete)
         mSQLiteDatabase = mCreateProductHelper.getWritableDatabase();
 
-        //データ登録
-        try {
-            //トランザクション開始
+        // データ登録
+        try{
+            // トランザクションの開始
             mSQLiteDatabase.beginTransaction();
 
             ContentValues value = new ContentValues();
             value.put("name", "matsumoto");
-            value.put("add", "tokyo");
-            value.put("tel", "080-123456");
+            value.put("address", "tokyo");
+            value.put("tel", "080-1234-5678");
             mSQLiteDatabase.insert("Users", null, value);
 
-            //トランザクションコミット
+            // トランザクションのコミット
             mSQLiteDatabase.setTransactionSuccessful();
-        } catch (Exception e) {
 
-        } finally {
+        }catch(Exception e){
+
+        }finally {
             mSQLiteDatabase.endTransaction();
         }
 
-        //データ更新
+        // データ更新
 
-        //データ削除
 
-        //データ表示
+        // データ削除
+
+
+        // データ表示
         mSQLiteDatabase = mCreateProductHelper.getReadableDatabase();
 
-        try {
-            String columns[] = {"name","tel"};
-            Cursor cursor = mSQLiteDatabase.query("Users",columns,null,null,null,null,null);
+        try{
+            String columns[] = {"id","name","address","tel"};
+            Cursor cursor = mSQLiteDatabase.query("Users",columns,null,null,null,null,"id");
 
             while(cursor.moveToNext()){
                 String id = cursor.getString(0);
                 String name = cursor.getString(1);
-                //String add = cursor.getString(2);
-                String tel = cursor.getString(2);
+                String address = cursor.getString(2);
+                String tel = cursor.getString(3);
 
-                Toast.makeText(this,"id:"+id+"name:"+name,Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "id:" + id + " name:" + name + " tel:" + tel + " address:" + address,
+                        Toast.LENGTH_LONG).show();
             }
-        } catch (Exception e) {
 
+        }catch (Exception e){
+            String test = "";
         }
         mSQLiteDatabase.close();
+
     }
 
 }
